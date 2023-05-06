@@ -13,19 +13,45 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[];
 
   constructor(private employeeService: EmployeeService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.getEmployees();
-  }
+      this.getEmployees();
+    }
 
-  private getEmployees() {
-    this.employeeService.getEmployeesList().subscribe(data =>{
-      this.employees = data;
-    });
-  }
+  private getEmployees()
+    {
+      this.employeeService.getEmployeesList().subscribe(data => {
+        this.employees = data;
+      });
+    }
 
-  updateEmployee(id: number) {
-    this.router.navigate(['update-emploee',id])
+    updateEmployee(id
+  :
+    number
+  )
+    {
+      this.router.navigate(['update-emploee', id])
+    }
+
+    deleteEmployee(id
+  :
+    number
+  )
+    {
+      this.employeeService.deleteEmployee(id).subscribe(data => {
+        console.log(data);
+        this.getEmployees();
+      })
+    }
+
+    employeeDetalies(id
+  :
+    number
+  )
+    {
+      this.router.navigate(['employee-details', id]);
+
+    }
   }
-}
